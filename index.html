@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles1.css">
     <link rel="stylesheet" href="css/united-states.css">
-    
+
 </head>
 
 <body>
@@ -20,14 +20,14 @@
         <nav>
             <div class="menu-icon">☰</div>
             <ul class="nav-links">
-              <li><a href="united-states.html">🇺🇸 United States</a></li>
-              <li><a href="#">Trip Boards</a></li>
-              <li><a href="#">List your property</a></li>
-              <li><a href="#">Help</a></li>
-              <li><a href="#">My Trips</a></li>
-              <li><a href="#" class="sign-in">Sign In</a></li>
+                <li><a href="united-states.html">🇺🇸 United States</a></li>
+                <li><a href="#">Trip Boards</a></li>
+                <li><a href="#">List your property</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">My Trips</a></li>
+                <li><a href="#" class="sign-in">Sign In</a></li>
             </ul>
-          </nav>
+        </nav>
         <div class="property-header">
             <a href="#" class="back-link">
                 <i class="fas fa-arrow-left"></i>
@@ -48,23 +48,34 @@
         <div class="gallery-container">
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="image1.png" alt="Main large image">
+                    <img src="image1.png" alt="Main large image" onclick="openGallery(0)">
                 </div>
                 <div class="gallery-item">
-                    <img src="image2.png" alt="Top right image">
+                    <img src="image2.png" alt="Top right image" onclick="openGallery(1)">
                 </div>
                 <div class="gallery-item">
-                    <img src="image3.png" alt="Middle right image">
+                    <img src="image3.png" alt="Middle right image" onclick="openGallery(2)">
                 </div>
                 <div class="gallery-item">
-                    <img src="image4.png" alt="Bottom left image">
+                    <img src="image4.png" alt="Bottom left image" onclick="openGallery(3)">
                 </div>
                 <div class="gallery-item">
-                    <img src="image5.png" alt="Bottom middle image">
+                    <img src="image5.png" alt="Bottom middle image" onclick="openGallery(4)">
                 </div>
                 <div class="gallery-item">
-                    <img src="image6.png" alt="Bottom right image">
+                    <img src="image6.png" alt="Bottom right image" onclick="openGallery(5)">
                 </div>
+            </div>
+        </div>
+        <!-- Lightbox Gallery Viewer -->
+        <div id="lightbox" class="lightbox">
+            <span class="close" onclick="closeGallery()">&times;</span>
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+            <div class="lightbox-title" id="lightboxTitle"></div>
+            <div class="lightbox-controls">
+                <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+                <span class="next" onclick="changeImage(1)">&#10095;</span>
+                <span class="counter" id="lightboxCounter">1/6</span>
             </div>
         </div>
 
@@ -156,42 +167,53 @@
                         <div class="price">
                             $134 <span>per night</span>
                         </div>
-                        <div class="date-picker">
-                            <input type="date" class="date-input" id="start-date" placeholder="Start date">
-                            <input type="date" class="date-input" id="end-date" placeholder="End date">
+                        <div class="info-section">
+                            <span class="info-item">
+                                Non-refundable <i class="info-icon">i</i>
+                            </span>
+                            <br>
+                            <div class="availability">
+                                <span class="availability-check">✔</span> Your dates are available
+                            </div>
                         </div>
-                        <div class="travelers-section">
-                            <div class="travelers-input" id="traveler-box">
-                                <span>Travelers</span>
+                        <div class="date-picker">
+
+                            <div><label for="start-date">Start Date</label> <input type="date" class="date-input"
+                                    id="start-date" placeholder="Start date"></div>
+                            <div><label for="end-date">End Date</label> <input type="date" class="date-input"
+                                    id="end-date" placeholder="End date"></div>
+                        </div>
+                        <div id="traveler-section" class="travelers-section">
+                            <div id="traveler-box" class="travelers-input">
+                                <span>Travelers:</span>
                                 <span id="total-travelers">2 travelers</span>
                             </div>
-                            <div class="traveler-options" id="traveler-options" style="display: none;">
-                                <label>Adults</label>
-                                <div class="counter">
-                                    <button class="counter-btn" id="adult-decrement">−</button>
+
+                            <div id="traveler-options" style="display: none;">
+                                <div class="traveler-type">
+                                    <span>Adults</span>
+                                    <button id="adult-decrement" class="decrement" disabled>-</button>
                                     <span id="adult-count">2</span>
-                                    <button class="counter-btn" id="adult-increment">+</button>
+                                    <button id="adult-increment" class="increment">+</button>
                                 </div>
-                                <label>Children</label>
-                                <div class="counter">
-                                    <button class="counter-btn" id="child-decrement">−</button>
+                                <div class="traveler-type">
+                                    <span>Children</span>
+                                    <button id="child-decrement" class="decrement" disabled>-</button>
                                     <span id="child-count">0</span>
-                                    <button class="counter-btn" id="child-increment">+</button>
+                                    <button id="child-increment" class="increment">+</button>
                                 </div>
                                 <button id="done-btn">Done</button>
                             </div>
                         </div>
-                        <div class="total">
-                            <span id="total-info">Total for 2 travelers one night</span>
-                            <span id="total-price">$134</span>
-                        </div>
+                        <div id="total-info"></div>
+                        <div id="total-price"></div>
                         <button class="book-btn">Book now</button>
                         <p id="charge-message" style="text-align: center; color: #666; font-size: 0.9rem;">
                             You will not be charged yet
-                        </p>                        
+                        </p>
                     </div>
                 </div>
-                
+
             </div>
             <div class="container1">
                 <div class="rooms-beds">
@@ -321,53 +343,6 @@
         <a href="#" class="see-all-amenities"><span class="icon">📋</span> See all 34 amenities</a>
     </section>
 
-    <div class="container3">
-        <h1 class="section-title3">Points of Interest</h1>
-        <p class="section-subtitle3">Time and distance from 2235 Meadow Ln Unit 2.</p>
-
-        <div class="points-container3">
-            <div class="points-section3">
-                <h2 class="subsection-title3">Shopping Centers</h2>
-                <div class="point-item3">
-                    <h3 class="point-title3">Airport Shopping Center</h3>
-                    <p class="point-info3">Walk: 16 min, 0.9 mi</p>
-                </div>
-                <div class="point-item3">
-                    <h3 class="point-title3">Mendenhall Mall</h3>
-                    <p class="point-info3">Walk: 17 min, 0.9 mi</p>
-                </div>
-                <div class="point-item3">
-                    <h3 class="point-title3">Nugget Mall</h3>
-                    <p class="point-info3">Walk: 20 min, 1.1 mi</p>
-                    <p class="point-note3">2235 Meadow Ln Unit 2 has 3 shopping centers within 1.1 miles, which is
-                        about a 20-minute walk. The miles and minutes will be for the farthest away property.</p>
-                </div>
-            </div>
-
-            <div class="points-section3">
-                <h2 class="subsection-title3">Parks and Recreation</h2>
-                <div class="point-item3">
-                    <h3 class="point-title3">Mendenhall Glacier Visitor Center</h3>
-                    <p class="point-info3">Drive: 6 min, 3.5 mi</p>
-                </div>
-                <div class="point-item3">
-                    <h3 class="point-title3">Alaska State Museum</h3>
-                    <p class="point-info3">Drive: 14 min, 9.3 mi</p>
-                </div>
-                <div class="point-item3">
-                    <h3 class="point-title3">Wickersham State Historic Site</h3>
-                    <p class="point-info3">Drive: 14 min, 9.4 mi</p>
-                </div>
-                <div class="point-item3">
-                    <h3 class="point-title3">Eaglecrest Ski Area</h3>
-                    <p class="point-info3">Drive: 44 min, 20.3 mi</p>
-                    <p class="point-note3">2235 Meadow Ln Unit 2 has 4 parks within 20.3 miles, including Mendenhall
-                        Glacier Visitor Center, Alaska State Museum, and Wickersham State Historic Site.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="search-container">
         <div class="search-card">
             <span class="beta-badge">Beta</span>
@@ -397,143 +372,55 @@
             </div>
         </div>
     </div>
-    <div class="container2">
-        <h1 class="section-title2">Similar properties</h1>
-        <div class="property-grid2">
-            <div class="property-card-1">
-                <img src="image7.png" alt="Baked Alaska-Near Mendenhall Glacier and Auke Bay Offering"
-                    class="property-image">
-                <div class="property-details2">
-                    <h2 class="property-title2">Baked Alaska-Near Mendenhall Glacier and Auke Bay Offering</h2>
-                    <p class="property-location2">Juneau</p>
-                    <ul class="property-amenities2">
-                        <li>Kitchen</li>
-                        <li>Parking available</li>
-                        <li>Microwave</li>
-                    </ul>
-                    <p class="property-rating2">9.8/10 (30 reviews)</p>
-                </div>
-            </div>
-            <div class="property-card-2">
-                <img src="image8.png" alt="Beachfront community with city and mountain view" class="property-image">
-                <div class="property-details2">
-                    <h2 class="property-title2">Beachfront community with city and mountain view</h2>
-                    <p class="property-location2">North Douglas</p>
-                    <ul class="property-amenities2">
-                        <li>Pet friendly</li>
-                        <li>Free WiFi</li>
-                        <li>Breakfast available</li>
-                        <li>Parking available</li>
-                    </ul>
-                    <p class="property-rating2">9.8/10 (58 reviews)</p>
-                </div>
-            </div>
-            <div class="property-card-3">
-                <img src="image9.png" alt="Otter's Hideaway: Serene Getaway In Juneau, Alaska" class="property-image">
-                <div class="property-details2">
-                    <h2 class="property-title2">Otter's Hideaway: Serene Getaway In Juneau, Alaska</h2>
-                    <p class="property-location2">Juneau</p>
-                    <ul class="property-amenities2">
-                        <li>Ocean view</li>
-                        <li>Kitchen</li>
-                        <li>Washer</li>
-                        <li>Dryer</li>
-                    </ul>
-                    <p class="property-rating2">10.0/10 (69 reviews)</p>
-                </div>
-            </div>
-            <div class="property-card-4">
-                <img src="image10.png" alt="A Cozy Home Away From Home in Mendenhall Valley" class="property-image">
-                <div class="property-details2">
-                    <h2 class="property-title2">A Cozy Home Away From Home in Mendenhall Valley</h2>
-                    <p class="property-location2">Mendenhall Valley</p>
-                    <ul class="property-amenities2">
-                        <li>Ocean view</li>
-                        <li>Kitchen</li>
-                        <li>Washer</li>
-                        <li>Dryer</li>
-                    </ul>
-                    <p class="property-rating2">10.0/10 (15 reviews)</p>
-                </div>
-            </div>
-            <div class="property-card-5">
-                <img src="image11.png" alt="Serene Getaway in Juneau, Alaska" class="property-image">
-                <div class="property-details2">
-                    <h2 class="property-title2">Serene Getaway in Juneau, Alaska</h2>
-                    <p class="property-location2">Juneau</p>
-                    <ul class="property-amenities2">
-                        <li>Ocean view</li>
-                        <li>Kitchen</li>
-                        <li>Washer</li>
-                        <li>Dryer</li>
-                    </ul>
-                    <p class="property-rating2">10.0/10</p>
-                </div>
-            </div>
-            <div class="property-card-6">
-                <img src="image12.png" alt="Splendid Beachfront View" class="property-image">
-                <div class="property-details2">
-                    <h2 class="property-title2">Splendid Beachfront View, Alaska</h2>
-                    <p class="property-location2">Juneau</p>
-                    <ul class="property-amenities2">
-                        <li>Ocean view</li>
-                        <li>Kitchen</li>
-                        <li>Washer</li>
-                        <li>Dryer</li>
-                    </ul>
-                    <p class="property-rating2">10.0/10</p>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="house-rules-container">
-    <h1>House Rules</h1>
+        <h1>House Rules</h1>
 
-    <div class="times">
-        <div class="time-item">Check in after 3:00 PM</div>
-        <div class="time-item">Check out before 11:00 AM</div>
+        <div class="times">
+            <div class="time-item">Check in after 3:00 PM</div>
+            <div class="time-item">Check out before 11:00 AM</div>
+        </div>
+
+        <div class="rules-grid">
+            <div class="rule-item">
+                <div class="rule-icon">👶</div>
+                <div class="rule-content">
+                    <div class="rule-title">Children</div>
+                    <div class="rule-description">Children allowed: ages 0-17</div>
+                </div>
+            </div>
+
+            <div class="rule-item">
+                <div class="rule-icon">🎉</div>
+                <div class="rule-content">
+                    <div class="rule-title">Events</div>
+                    <div class="rule-description">No events allowed</div>
+                </div>
+            </div>
+
+            <div class="rule-item">
+                <div class="rule-icon">🐾</div>
+                <div class="rule-content">
+                    <div class="rule-title">Pets</div>
+                    <div class="rule-description">No pets allowed</div>
+                </div>
+            </div>
+
+            <div class="rule-item">
+                <div class="rule-icon">🚭</div>
+                <div class="rule-content">
+                    <div class="rule-title">Smoking</div>
+                    <div class="rule-description">Smoking is not permitted</div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="rules-grid">
-        <div class="rule-item">
-            <div class="rule-icon">👶</div>
-            <div class="rule-content">
-                <div class="rule-title">Children</div>
-                <div class="rule-description">Children allowed: ages 0-17</div>
-            </div>
-        </div>
-
-        <div class="rule-item">
-            <div class="rule-icon">🎉</div>
-            <div class="rule-content">
-                <div class="rule-title">Events</div>
-                <div class="rule-description">No events allowed</div>
-            </div>
-        </div>
-
-        <div class="rule-item">
-            <div class="rule-icon">🐾</div>
-            <div class="rule-content">
-                <div class="rule-title">Pets</div>
-                <div class="rule-description">No pets allowed</div>
-            </div>
-        </div>
-
-        <div class="rule-item">
-            <div class="rule-icon">🚭</div>
-            <div class="rule-content">
-                <div class="rule-title">Smoking</div>
-                <div class="rule-description">Smoking is not permitted</div>
-            </div>
-        </div>
-    </div>
-</div>
     <div class="container">
-        
+
 
         <div class="damage-section">
             <h2>Damage and incidentals</h2>
-            <p>You will be responsible for any damage to the rental property caused by you or your party during your stay.</p>
+            <p>You will be responsible for any damage to the rental property caused by you or your party during your
+                stay.</p>
         </div>
 
         <h2>Cancellation</h2>
@@ -682,7 +569,7 @@
     <!-- Previous booking card content remains the same -->
     </div>
     <script src="script.js"></script> <!-- Your main JavaScript file -->
-    <script src="united-states.js"></script> 
+    <script src="united-states.js"></script>
 </body>
 
 </html>
